@@ -10,7 +10,7 @@ public abstract class GameEngine {
     private Scene scene;
     private Group groupNodes;
     private ObjectManager objectManager = new ObjectManager();
-    private ObjectFactory objectFactory = new ObjectFactory();
+    // private ObjectFactory objectFactory = new ObjectFactory();
     // map parser - map updater
     // map generator -
     // key logger - for key event
