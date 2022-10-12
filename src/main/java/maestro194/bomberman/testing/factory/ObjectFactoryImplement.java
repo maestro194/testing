@@ -1,4 +1,4 @@
-package maestro194.bomberman.testing.objects;
+package maestro194.bomberman.testing.factory;
 
 public class ObjectFactoryImplement {
     private static final int SIZE = 30;

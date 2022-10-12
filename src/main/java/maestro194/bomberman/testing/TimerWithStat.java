@@ -2,7 +2,7 @@ package maestro194.bomberman.testing;
 
 import javafx.animation.AnimationTimer;
 
-public class TimerWithStat extends AnimationTimer {
+public abstract class TimerWithStat extends AnimationTimer {
     public enum Stat {
         RUNNING, PAUSED, STOPPED,
     }
