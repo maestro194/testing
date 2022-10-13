@@ -12,19 +12,18 @@ import java.util.List;
 public abstract class Object {
     protected List<Animation> animationList = new ArrayList<>();
 
-    public Image image;
+    public static Image image;
     public double xPos;
     public double yPos;
-    public double width;
-    public double height;
+    public static final double width = 16;
+    public static final double height = 16;
     public double vX;
     public double vY;
     public boolean isDead;
 
-    public Object(int x, int y, Image image) {
+    public Object(int x, int y) {
         this.xPos = x;
         this.yPos = y;
-        this.image = image;
     }
 
     public abstract void update(Scene scene, long time);
