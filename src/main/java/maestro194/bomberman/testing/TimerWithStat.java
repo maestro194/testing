@@ -20,4 +20,8 @@ public abstract class TimerWithStat extends AnimationTimer {
         super.stop();
         stat = Stat.STOPPED;
     }
+
+    public Stat getStat() {
+        return stat;
+    }
 }

@@ -7,7 +7,4 @@ public class ObjectFactoryImplement {
     public ObjectFactoryImplement(/*KeyLogger keyLogger*/) {
 //        this.keyLogger = keyLogger;
     }
-
-
-
 }

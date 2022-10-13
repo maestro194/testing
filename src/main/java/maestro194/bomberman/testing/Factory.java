@@ -1,18 +1,21 @@
 package maestro194.bomberman.testing;
 
+import maestro194.bomberman.testing.map.MapGenerator;
+import maestro194.bomberman.testing.map.MapParser;
+import maestro194.bomberman.testing.util.KeyEventHandler;
+
 public class Factory {
     private static final Factory FACTORY = new Factory();
 
-    // Key logger;
+    KeyEventHandler keyEventHandler;
     // object factory
-    // map parser
-    // map gen
+    MapParser mapParser;
+    MapGenerator mapGenerator;
 
     private Factory() {
         // key logger
         // obj factory
-        // map parser
-        // map gen
+        map
     }
 
     // 4 getter methods
