@@ -1,12 +1,15 @@
 package maestro194.bomberman.testing.map;
 
 import maestro194.bomberman.testing.Factory;
+import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.objects.Object;
 
 public class GameMapGenerator extends MapGenerator<MapEntity> {
-    private Factory factory;
+    private ObjectFactory factory;
 
-//    public GameMapGenerator(Factory);
+    public GameMapGenerator(ObjectFactory factory) {
+        this.factory = factory;
+    }
 
     @Override
     protected Object generateEntity(int x, int y, MapEntity e) {
@@ -14,6 +17,8 @@ public class GameMapGenerator extends MapGenerator<MapEntity> {
             case BOMB:
                 return null;
             case BOMBER:
+                return null;
+            case BRICK:
                 return null;
             case GRASS:
                 return null;

@@ -5,7 +5,7 @@ import maestro194.bomberman.testing.objects.Object;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class MapGenerator<Entity> {
+public abstract class MapGenerator<Entity> implements IMapGenerator<Entity>{
 
     public List<Object> generate(List<List<Entity>> mapEntity) {
         List<Object> gameObjects = new ArrayList<>();

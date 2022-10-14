@@ -3,33 +3,39 @@ package maestro194.bomberman.testing;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
-import maestro194.bomberman.testing.map.MapGenerator;
-import maestro194.bomberman.testing.map.MapParser;
+import maestro194.bomberman.testing.factory.ObjectFactory;
+import maestro194.bomberman.testing.map.IMapGenerator;
+import maestro194.bomberman.testing.map.IMapParser;
 import maestro194.bomberman.testing.objects.Object;
 import maestro194.bomberman.testing.objects.ObjectManager;
 import maestro194.bomberman.testing.util.KeyEventHandler;
 
 import java.io.File;
+import java.net.URL;
 import java.util.List;
 
-public abstract class GameEngine<Entity> {
+public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public static int WIDTH;
     public static int HEIGHT;
     private TimerWithStat animationTimer;
     private Canvas canvas;
+    private GraphicsContext graphicsContext;
     private Scene scene;
     private Group groupNodes;
     private ObjectManager objectManager = new ObjectManager();
-    // private ObjectFactory objectFactory = new ObjectFactory();
-    private MapParser mapParser;
-    private MapGenerator mapGenerator;
+    private OF objectFactory;
+    private IMapParser<Entity> mapParser;
+    private IMapGenerator<Entity> mapGenerator;
     private KeyEventHandler keyEventHandler;
 
-    public GameEngine(MapParser mapParser, MapGenerator mapGenerator) {
+    public GameEngine(OF objectFactory, IMapParser<Entity> mapParser, IMapGenerator<Entity> mapGenerator, KeyEventHandler keyEventHandler) {
+        this.objectFactory = objectFactory;
         this.mapParser = mapParser;
         this.mapGenerator = mapGenerator;
+        this.keyEventHandler = keyEventHandler;
         setGameLoop();
     }
 
@@ -40,14 +46,17 @@ public abstract class GameEngine<Entity> {
             updateSprites(time);
             checkCollision();
             cleanSprites();
+            renderSprites(time);
             }
         };
     }
 
-    public void init(Stage stage, File map) {
+    public void init(Stage stage, String map) {
         stage.setTitle("Bomberman");
         this.groupNodes = new Group();
-        this.scene = new Scene(groupNodes, WIDTH, HEIGHT);
+        this.scene = new Scene(groupNodes);
+        canvas = new Canvas(WIDTH, HEIGHT);
+        graphicsContext = getCanvas().getGraphicsContext2D();
         getGroupNodes().getChildren().add(canvas);
         List<List<Entity>> parse = getMapParser().parse(map);
         List<Object> generate = getMapGenerator().generate(parse);
@@ -80,6 +89,12 @@ public abstract class GameEngine<Entity> {
 
     }
 
+    public void renderSprites(long time) {
+        for(Object obj: objectManager.getObjectList()) {
+            obj.render(graphicsContext);
+        }
+    }
+
     public TimerWithStat getAnimationTimer() {
         return animationTimer;
     }
@@ -100,11 +115,11 @@ public abstract class GameEngine<Entity> {
         return objectManager;
     }
 
-    public MapParser getMapParser() {
+    public IMapParser<Entity> getMapParser() {
         return mapParser;
     }
 
-    public MapGenerator getMapGenerator() {
+    public IMapGenerator<Entity> getMapGenerator() {
         return mapGenerator;
     }
 

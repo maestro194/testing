@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 
 public class Bomber extends Object {
     private static final long BOMB_TIMER = 2500;
+    private long startTime;
 
     public Bomber(int x, int y) {
         super(x, y);
@@ -12,6 +13,8 @@ public class Bomber extends Object {
 
     @Override
     public void update(Scene scene, long time) {
-
+        if(time - startTime > BOMB_TIMER) {
+            // explode
+        }
     }
 }

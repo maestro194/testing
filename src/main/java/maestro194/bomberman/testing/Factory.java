@@ -1,5 +1,8 @@
 package maestro194.bomberman.testing;
 
+import maestro194.bomberman.testing.factory.BaseFactory;
+import maestro194.bomberman.testing.factory.ObjectFactory;
+import maestro194.bomberman.testing.factory.ObjectFactoryImpl;
 import maestro194.bomberman.testing.map.GameMapGenerator;
 import maestro194.bomberman.testing.map.GameMapParser;
 import maestro194.bomberman.testing.map.MapGenerator;
@@ -11,15 +14,15 @@ public class Factory {
     private static final Factory FACTORY = new Factory();
 
     private final KeyEventHandler keyEventHandler;
-    // object factory
-    private final MapParser mapParser;
-    private final MapGenerator mapGenerator;
+    private final BaseFactory factory;
+    private final MapParser<?> mapParser;
+    private final MapGenerator<?> mapGenerator;
 
     private Factory() {
         keyEventHandler = new KeyEventHandleImpl();
-        // obj factory
+        factory = new ObjectFactoryImpl(keyEventHandler);
         mapParser = new GameMapParser();
-        mapGenerator = new GameMapGenerator();
+        mapGenerator = new GameMapGenerator((ObjectFactory) factory);
     }
 
     // 4 getter methods
@@ -28,11 +31,15 @@ public class Factory {
         return FACTORY.keyEventHandler;
     }
 
-    public static MapParser getMapParser() {
+    public static BaseFactory getObjectFactory() {
+        return FACTORY.factory;
+    }
+
+    public static MapParser<?> getMapParser() {
         return FACTORY.mapParser;
     }
 
-    public static MapGenerator getMapGenerator() {
+    public static MapGenerator<?> getMapGenerator() {
         return FACTORY.mapGenerator;
     }
 }

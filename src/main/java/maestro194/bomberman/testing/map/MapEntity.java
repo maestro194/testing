@@ -1,10 +1,11 @@
 package maestro194.bomberman.testing.map;
 
 public enum MapEntity {
-    BOMBER("Bomber"),
-    WALL("Wall"),
     BOMB("Bomb"),
-    GRASS("Grass");
+    BOMBER("Bomber"),
+    BRICK("Brick"),
+    GRASS("Grass"),
+    WALL("Wall");
 
     private String name;
 

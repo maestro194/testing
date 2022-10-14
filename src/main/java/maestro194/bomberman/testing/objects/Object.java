@@ -13,8 +13,7 @@ public abstract class Object {
     protected List<Animation> animationList = new ArrayList<>();
 
     public static Image image;
-    public double xPos;
-    public double yPos;
+    public Position position;
     public static final double width = 16;
     public static final double height = 16;
     public double vX;
@@ -22,28 +21,21 @@ public abstract class Object {
     public boolean isDead;
 
     public Object(int x, int y) {
-        this.xPos = x;
-        this.yPos = y;
+        this.position = new Position(x, y);
     }
 
     public abstract void update(Scene scene, long time);
 
     public Rectangle2D getBoundary() {
-        return new Rectangle2D(xPos, yPos, width, height);
+        return new Rectangle2D(position.getX(), position.getY(), width, height);
     }
     public boolean isColliding(Object object) {
         return object.getBoundary().intersects(this.getBoundary());
     }
 
     public void render(GraphicsContext gc) {
-        gc.drawImage(image, xPos, yPos);
+        gc.drawImage(image, position.getX(), position.getY());
     }
 
-    public void setxPos(double xPos) {
-        this.xPos = xPos;
-    }
 
-    public void setyPos(double yPos) {
-        this.yPos = yPos;
-    }
 }

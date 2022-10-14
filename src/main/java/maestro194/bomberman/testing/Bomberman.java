@@ -1,14 +1,17 @@
 package maestro194.bomberman.testing;
 
+import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.map.MapEntity;
-import maestro194.bomberman.testing.map.MapGenerator;
-import maestro194.bomberman.testing.map.MapParser;
+import maestro194.bomberman.testing.map.IMapGenerator;
+import maestro194.bomberman.testing.map.IMapParser;
 
-public class Bomberman extends GameEngine{
+public class Bomberman extends GameEngine<ObjectFactory, MapEntity> {
     public Bomberman() {
         super(
-                (MapParser<MapEntity>) Factory.getMapParser(),
-                (MapGenerator<MapEntity>) Factory.getMapGenerator()
+                (ObjectFactory) Factory.getObjectFactory(),
+                (IMapParser<MapEntity>) Factory.getMapParser(),
+                (IMapGenerator<MapEntity>) Factory.getMapGenerator(),
+                Factory.getKeyEventHandler()
         );
     }
 }
