@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         Bomberman bomberman = new Bomberman();
-        bomberman.init(stage, new File("levels/level_1.m"));
+        bomberman.init(stage, new File("maestro194/bomberman/testing/levels/level_1.m"));
         // bomberman start game loop
         stage.show();
     }

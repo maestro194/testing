@@ -24,6 +24,7 @@ public abstract class MapParser<Entity> {
                     continue;
                 for(int i = 0; i < length; i ++)
                     row.add(parseEntity(line.charAt(i)));
+                res.add(row);
             }
         } catch (IOException e) {
             throw new RuntimeException("Error in reading map file", e);
