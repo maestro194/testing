@@ -1,6 +1,8 @@
 package maestro194.bomberman.testing.factory;
 
+import javafx.scene.image.Image;
 import maestro194.bomberman.testing.objects.*;
+import maestro194.bomberman.testing.sprites.Sprite;
 import maestro194.bomberman.testing.util.KeyEventHandler;
 
 public class ObjectFactoryImpl implements ObjectFactory{
@@ -14,23 +16,28 @@ public class ObjectFactoryImpl implements ObjectFactory{
     }
 
     @Override
-    public MoveObject getMoveObject(int x, int y) {
-        return new MoveObject(x, y);
+    public MoveObject getMoveObject(int x, int y, Image image) {
+        return new MoveObject(x, y, image);
     }
 
     @Override
     public Bomb getBomb(int x, int y) {
-        return new Bomb(x, y);
+        return new Bomb(x, y, Sprite.wall.getFxImage());
     }
 
     @Override
     public Bomber getBomber(int x, int y) {
-        return new Bomber(x, y);
+        return new Bomber(x, y, Sprite.player_right.getFxImage());
+    }
+
+    @Override
+    public Brick getBrick(int x, int y) {
+        return new Brick(x, y, Sprite.brick.getFxImage());
     }
 
     @Override
     public Wall getWall(int x, int y) {
-        return new Wall(x * SIZE, y * SIZE);
+        return new Wall(x, y, Sprite.wall.getFxImage());
     }
 
 

@@ -4,8 +4,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 public class Bomb extends Object {
-    public Bomb(int x, int y) {
-        super(x, y);
+    public Bomb(int x, int y, Image image) {
+        super(x, y, image);
     }
 
     @Override

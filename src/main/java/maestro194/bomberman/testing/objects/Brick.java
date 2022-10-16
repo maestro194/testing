@@ -1,11 +1,12 @@
 package maestro194.bomberman.testing.objects;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 public class Brick extends Object {
 
-    public Brick(int x, int y) {
-        super(x, y);
+    public Brick(int x, int y, Image image) {
+        super(x, y, image);
     }
 
     @Override

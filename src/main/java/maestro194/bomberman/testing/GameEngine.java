@@ -43,10 +43,10 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
         animationTimer = new TimerWithStat() {
             @Override
             public void handle(long time) {
-            updateSprites(time);
-            checkCollision();
-            cleanSprites();
-            renderSprites(time);
+                updateSprites(time);
+                checkCollision();
+                cleanSprites();
+                renderSprites();
             }
         };
     }
@@ -65,8 +65,8 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
         addObj(generate);
     }
 
-    public void removeObj() {
-
+    public void startGameLoop() {
+        getAnimationTimer().start();
     }
 
     public void addObj(List<Object> generate) {
@@ -74,6 +74,10 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
         for(Object obj : generate) {
 
         }
+    }
+
+    public void removeObj(Object... gameObjects) {
+
     }
 
     public void updateSprites(long time) {
@@ -86,10 +90,11 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
     }
 
     public void cleanSprites() {
-
+        getObjectManager().cleanUpObject();
     }
 
-    public void renderSprites(long time) {
+    public void renderSprites() {
+        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for(Object obj: objectManager.getObjectList()) {
             obj.render(graphicsContext);
         }

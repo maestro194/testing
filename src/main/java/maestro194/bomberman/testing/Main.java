@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage stage) {
         Bomberman bomberman = new Bomberman();
         bomberman.init(stage, "level_1.m");
-        // bomberman start game loop
+        bomberman.startGameLoop();
         stage.show();
     }
 

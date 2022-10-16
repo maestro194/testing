@@ -7,8 +7,8 @@ public class Bomber extends Object {
     private static final long BOMB_TIMER = 2500;
     private long startTime;
 
-    public Bomber(int x, int y) {
-        super(x, y);
+    public Bomber(int x, int y, Image image) {
+        super(x, y, image);
     }
 
     @Override

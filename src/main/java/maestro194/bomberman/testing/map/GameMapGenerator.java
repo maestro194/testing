@@ -15,14 +15,18 @@ public class GameMapGenerator extends MapGenerator<MapEntity> {
     protected Object generateEntity(int x, int y, MapEntity e) {
         switch (e) {
             case BOMB:
+                factory.getBomb(x, y);
                 return null;
             case BOMBER:
+                factory.getBomber(x, y);
                 return null;
             case BRICK:
+                factory.getBrick(x, y);
                 return null;
             case GRASS:
                 return null;
             case WALL:
+                factory.getWall(x, y);
                 return null;
             default:
                 return null;
