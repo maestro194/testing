@@ -16,6 +16,11 @@ public class ObjectFactoryImpl implements ObjectFactory{
     }
 
     @Override
+    public MoveObject getMoveObject(int x, int y, Image image) {
+        return new MoveObject(x, y, image);
+    }
+
+    @Override
     public Bomb getBomb(int x, int y) {
         return new Bomb(x, y, Sprite.bomb.getFxImage());
     }

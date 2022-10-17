@@ -51,8 +51,8 @@ public class KeyEventHandleImpl implements KeyEventHandler, EventHandler<KeyEven
     public void handle(KeyEvent keyEvent) {
         List<KeyEventListener> list = map.get(keyEvent.getCode());
         if(list != null) {
-            for(KeyEventListener keyEventListener : list) {
-                keyEventListener.notify(keyEvent);
+            for(KeyEventListener keyEventHandler : list) {
+                keyEventHandler.notify(keyEvent);
             }
         }
     }
