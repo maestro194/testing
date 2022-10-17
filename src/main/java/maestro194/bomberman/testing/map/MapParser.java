@@ -25,8 +25,9 @@ public abstract class MapParser<Entity> implements IMapParser<Entity> {
                 line = scanner.nextLine();
                 List<Entity> row = new ArrayList<>();
                 int length = line.length();
-                for (int i = 0; i < length; i++)
+                for (int i = 0; i < length; i++) {
                     row.add(parseEntity(line.charAt(i)));
+                }
                 res.add(row);
             }
         } catch (Exception e) {

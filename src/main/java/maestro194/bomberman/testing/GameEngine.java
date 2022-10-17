@@ -71,13 +71,10 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public void addObj(List<Object> generate) {
         objectManager.addObject(generate.toArray(new Object[0]));
-        for(Object obj : generate) {
-
-        }
     }
 
     public void removeObj(Object... gameObjects) {
-
+        objectManager.removeObject(gameObjects);
     }
 
     public void updateSprites(long time) {
@@ -94,7 +91,7 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
     }
 
     public void renderSprites() {
-        graphicsContext.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        graphicsContext.clearRect(0, 0, getCanvas().getWidth(), getCanvas().getHeight());
         for(Object obj: objectManager.getObjectList()) {
             obj.render(graphicsContext);
         }
@@ -106,6 +103,22 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public Canvas getCanvas() {
         return canvas;
+    }
+
+    public static int getWIDTH() {
+        return WIDTH;
+    }
+
+    public static int getHEIGHT() {
+        return HEIGHT;
+    }
+
+    public GraphicsContext getGraphicsContext() {
+        return graphicsContext;
+    }
+
+    public OF getObjectFactory() {
+        return objectFactory;
     }
 
     public Scene getScene() {

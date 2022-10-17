@@ -5,6 +5,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import maestro194.bomberman.testing.sprites.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,9 @@ public abstract class Object {
     public static final double height = 16;
     public double vX;
     public double vY;
-    public boolean isDead;
 
     public Object(int x, int y, Image image) {
-        this.position = new Position(x * 16, y * 16);
+        this.position = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
         this.image = image;
     }
 
