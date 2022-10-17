@@ -4,7 +4,7 @@ import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.objects.Object;
 
 public class GameMapGenerator extends MapGenerator<MapEntity> {
-    private ObjectFactory factory;
+    private final ObjectFactory factory;
 
     public GameMapGenerator(ObjectFactory factory) {
         this.factory = factory;

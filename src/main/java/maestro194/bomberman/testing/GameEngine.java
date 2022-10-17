@@ -10,12 +10,9 @@ import maestro194.bomberman.testing.map.IMapGenerator;
 import maestro194.bomberman.testing.map.IMapParser;
 import maestro194.bomberman.testing.objects.Object;
 import maestro194.bomberman.testing.objects.ObjectManager;
-import maestro194.bomberman.testing.objects.Wall;
 import maestro194.bomberman.testing.sprites.Sprite;
 import maestro194.bomberman.testing.util.KeyEventHandler;
 
-import java.io.File;
-import java.net.URL;
 import java.util.List;
 
 public abstract class GameEngine<OF extends ObjectFactory, Entity> {
@@ -27,11 +24,11 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
     private GraphicsContext graphicsContext;
     private Scene scene;
     private Group groupNodes;
-    private ObjectManager objectManager = new ObjectManager();
-    private OF objectFactory;
-    private IMapParser<Entity> mapParser;
-    private IMapGenerator<Entity> mapGenerator;
-    private KeyEventHandler keyEventHandler;
+    private final ObjectManager objectManager = new ObjectManager();
+    private final OF objectFactory;
+    private final IMapParser<Entity> mapParser;
+    private final IMapGenerator<Entity> mapGenerator;
+    private final KeyEventHandler keyEventHandler;
 
     public GameEngine(OF objectFactory, IMapParser<Entity> mapParser, IMapGenerator<Entity> mapGenerator, KeyEventHandler keyEventHandler) {
         this.objectFactory = objectFactory;
