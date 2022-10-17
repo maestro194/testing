@@ -14,8 +14,10 @@ public abstract class MapGenerator<Entity> implements IMapGenerator<Entity>{
             List<Entity> li = mapEntity.get(i);
             for(int j = 0; j < li.size(); j ++) {
                 Object generateEntity = generateEntity(j, i, li.get(j));
-                if(generateEntity != null)
+                if(generateEntity != null) {
                     gameObjects.add(generateEntity);
+                }
+
             }
         }
 
