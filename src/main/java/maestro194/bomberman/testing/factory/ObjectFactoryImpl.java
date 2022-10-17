@@ -22,23 +22,22 @@ public class ObjectFactoryImpl implements ObjectFactory{
 
     @Override
     public Bomb getBomb(int x, int y) {
-        return new Bomb(x, y, Sprite.wall.getFxImage());
+        return new Bomb(x, y, Sprite.bomb.getFxImage());
     }
-
     @Override
     public Bomber getBomber(int x, int y) {
         return new Bomber(x, y, Sprite.player_right.getFxImage());
     }
-
     @Override
     public Brick getBrick(int x, int y) {
         return new Brick(x, y, Sprite.brick.getFxImage());
     }
-
+    @Override
+    public Grass getGrass(int x, int y) {
+        return new Grass(x, y, Sprite.grass.getFxImage());
+    }
     @Override
     public Wall getWall(int x, int y) {
         return new Wall(x, y, Sprite.wall.getFxImage());
     }
-
-
 }

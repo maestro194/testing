@@ -1,5 +1,8 @@
 package maestro194.bomberman.testing.objects;
 
+import javafx.scene.canvas.GraphicsContext;
+import maestro194.bomberman.testing.GameEngine;
+
 import java.util.*;
 
 public class ObjectManager {
@@ -21,6 +24,10 @@ public class ObjectManager {
     public void cleanUpObject() {
         objectList.removeAll(cleanUpSet);
         cleanUpSet.clear();
+    }
+
+    public void renderSprites(GraphicsContext graphicsContext) {
+        objectList.forEach(g -> g.render(graphicsContext));
     }
 
     public List<Object> getObjectList() {

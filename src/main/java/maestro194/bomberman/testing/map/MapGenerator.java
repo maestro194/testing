@@ -19,6 +19,8 @@ public abstract class MapGenerator<Entity> implements IMapGenerator<Entity>{
             }
         }
 
+        System.out.println(gameObjects.size());
+
         return gameObjects;
     }
 

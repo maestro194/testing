@@ -16,8 +16,8 @@ public abstract class MapParser<Entity> implements IMapParser<Entity> {
 
         try (Scanner scanner = new Scanner(Objects.requireNonNull(map))) {
             // read level
-            GameEngine.WIDTH = scanner.nextInt();
             GameEngine.HEIGHT = scanner.nextInt();
+            GameEngine.WIDTH = scanner.nextInt();
             scanner.nextLine();
 
             String line;
@@ -36,7 +36,6 @@ public abstract class MapParser<Entity> implements IMapParser<Entity> {
         return res;
     }
 
-    protected abstract String charConv(char charAt);
     protected abstract Entity parseEntity(char charAt);
 
 }

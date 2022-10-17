@@ -10,6 +10,8 @@ import maestro194.bomberman.testing.map.IMapGenerator;
 import maestro194.bomberman.testing.map.IMapParser;
 import maestro194.bomberman.testing.objects.Object;
 import maestro194.bomberman.testing.objects.ObjectManager;
+import maestro194.bomberman.testing.objects.Wall;
+import maestro194.bomberman.testing.sprites.Sprite;
 import maestro194.bomberman.testing.util.KeyEventHandler;
 
 import java.io.File;
@@ -53,15 +55,22 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public void init(Stage stage, String map) {
         stage.setTitle("Bomberman");
-        this.groupNodes = new Group();
-        this.scene = new Scene(groupNodes);
-        canvas = new Canvas(WIDTH, HEIGHT);
-        graphicsContext = getCanvas().getGraphicsContext2D();
-        getGroupNodes().getChildren().add(canvas);
+
         List<List<Entity>> parse = getMapParser().parse(map);
         List<Object> generate = getMapGenerator().generate(parse);
-        keyEventHandler.init(getScene());
+
+        this.groupNodes = new Group();
+        canvas = new Canvas(WIDTH * Sprite.SCALED_SIZE, HEIGHT * Sprite.SCALED_SIZE);
+        graphicsContext = getCanvas().getGraphicsContext2D();
+        groupNodes.getChildren().add(canvas);
+        this.scene = new Scene(groupNodes);
         stage.setScene(getScene());
+
+        keyEventHandler.init(getScene());
+
+        System.out.println("canvas width: " + canvas.getWidth());
+        System.out.println("canvas height: " + canvas.getHeight());
+
         addObj(generate);
     }
 
@@ -71,6 +80,7 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public void addObj(List<Object> generate) {
         objectManager.addObject(generate.toArray(new Object[0]));
+        generate.clear();
     }
 
     public void removeObj(Object... gameObjects) {
@@ -92,9 +102,7 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public void renderSprites() {
         graphicsContext.clearRect(0, 0, getCanvas().getWidth(), getCanvas().getHeight());
-        for(Object obj: objectManager.getObjectList()) {
-            obj.render(graphicsContext);
-        }
+        getObjectManager().renderSprites(graphicsContext);
     }
 
     public TimerWithStat getAnimationTimer() {
@@ -103,14 +111,6 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public Canvas getCanvas() {
         return canvas;
-    }
-
-    public static int getWIDTH() {
-        return WIDTH;
-    }
-
-    public static int getHEIGHT() {
-        return HEIGHT;
     }
 
     public GraphicsContext getGraphicsContext() {

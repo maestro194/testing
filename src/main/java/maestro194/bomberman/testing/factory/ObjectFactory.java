@@ -8,5 +8,6 @@ public interface ObjectFactory extends BaseFactory{
     Bomb getBomb(int x, int y);                     // bomb
     Bomber getBomber(int x, int y);                 // bomber
     Brick getBrick(int x, int y);
+    Grass getGrass(int x, int y);
     Wall getWall(int x, int y);                     // wall
 }
