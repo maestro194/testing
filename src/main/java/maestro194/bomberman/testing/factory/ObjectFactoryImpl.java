@@ -8,7 +8,7 @@ import maestro194.bomberman.testing.util.KeyEventHandler;
 public class ObjectFactoryImpl implements ObjectFactory{
     private static final int SIZE = 16;
 
-    private KeyEventHandler keyEventHandler;
+    private final KeyEventHandler keyEventHandler;
 
     public ObjectFactoryImpl(KeyEventHandler keyEventHandler) {
         super();
@@ -21,7 +21,9 @@ public class ObjectFactoryImpl implements ObjectFactory{
     }
     @Override
     public Bomber getBomber(int x, int y) {
-        return new Bomber(x, y, Sprite.player_right.getFxImage());
+        Bomber bomber = new Bomber(x, y, Sprite.player_right.getFxImage());
+        keyEventHandler.registerEvent(bomber);
+        return bomber;
     }
     @Override
     public Brick getBrick(int x, int y) {
