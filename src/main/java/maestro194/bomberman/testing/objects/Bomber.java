@@ -2,10 +2,12 @@ package maestro194.bomberman.testing.objects;
 
 import javafx.event.Event;
 import javafx.event.EventType;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import maestro194.bomberman.testing.util.KeyEventHandler;
 import maestro194.bomberman.testing.util.KeyEventListener;
 
 import java.util.Arrays;
@@ -33,7 +35,7 @@ public class Bomber extends MoveObject implements KeyEventListener {
             if(keyEvent.getCode().equals(currentlyPressed)) {
                 this.speed = 0;
             }
-        } else if(KeyEvent.KEY_PRESSED.equals(keyEvent)) {
+        } else if(KeyEvent.KEY_PRESSED.equals(eventType)) {
             currentlyPressed = keyEvent.getCode();
             this.direction = getDirection(keyEvent);
             this.speed = 1;
@@ -43,7 +45,12 @@ public class Bomber extends MoveObject implements KeyEventListener {
     @Override
     public void update(Scene scene, long time) {
         super.update(scene, time);
+
+        // if(change position)
+        // do animation
+
         System.out.println("speed: " + this.speed);
+        System.out.println("xPos: " + this.position.getX() + ", yPos: " + this.position.getY());
     }
 
     private Direction getDirection(KeyEvent keyEvent) {
@@ -57,5 +64,9 @@ public class Bomber extends MoveObject implements KeyEventListener {
             default:
                 return Direction.R;
         }
+    }
+
+    public static Position getPosition() {
+        return position;
     }
 }

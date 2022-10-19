@@ -12,16 +12,13 @@ import java.util.List;
 
 public abstract class Object {
     protected List<Animation> animationList = new ArrayList<>();
-
     public Image image;
-    public Position position;
+    public static Position position;
     public static final double width = 16;
     public static final double height = 16;
-    public double vX;
-    public double vY;
 
     public Object(int x, int y, Image image) {
-        this.position = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
+        position = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
         this.image = image;
     }
 
@@ -32,6 +29,10 @@ public abstract class Object {
     }
     public boolean isColliding(Object object) {
         return object.getBoundary().intersects(this.getBoundary());
+    }
+
+    public static Position getPosition() {
+        return position;
     }
 
     public void render(GraphicsContext gc) {

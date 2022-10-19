@@ -1,13 +1,16 @@
 package maestro194.bomberman.testing.objects;
 
+import javafx.animation.Animation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MoveObject extends Object{
     protected Position last;
-    protected Position position;
     protected Direction direction;
-    protected int speed = 1;
+    protected int speed;
     protected boolean isDead = false;
 
     public MoveObject(int x, int y, Image image) {
@@ -45,7 +48,7 @@ public class MoveObject extends Object{
     public void update(Scene scene, long time) {
         if(isDead)
             return;
-        this.last = this.position;
+        this.last = new Position(position.getX(), position.getY());
         this.position = move(position, direction);
     }
 }

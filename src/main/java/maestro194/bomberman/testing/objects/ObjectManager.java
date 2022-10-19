@@ -28,6 +28,13 @@ public class ObjectManager {
 
     public void renderSprites(GraphicsContext graphicsContext) {
         objectList.forEach(g -> g.render(graphicsContext));
+
+        for(Object object: objectList)
+            if(object instanceof Wall || object instanceof Brick || object instanceof Grass)
+                object.render(graphicsContext);
+        for(Object object: objectList)
+            if(object instanceof MoveObject)
+                object.render(graphicsContext);
     }
 
     public List<Object> getObjectList() {

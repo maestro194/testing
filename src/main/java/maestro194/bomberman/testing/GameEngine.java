@@ -8,10 +8,12 @@ import javafx.stage.Stage;
 import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.map.IMapGenerator;
 import maestro194.bomberman.testing.map.IMapParser;
+import maestro194.bomberman.testing.objects.MoveObject;
 import maestro194.bomberman.testing.objects.Object;
 import maestro194.bomberman.testing.objects.ObjectManager;
 import maestro194.bomberman.testing.sprites.Sprite;
 import maestro194.bomberman.testing.util.KeyEventHandler;
+import maestro194.bomberman.testing.util.KeyEventListener;
 
 import java.util.List;
 
@@ -65,9 +67,6 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
         keyEventHandler.init(getScene());
 
-        System.out.println("canvas width: " + canvas.getWidth());
-        System.out.println("canvas height: " + canvas.getHeight());
-
         addObj(generate);
     }
 
@@ -77,14 +76,22 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
 
     public void addObj(List<Object> generate) {
         objectManager.addObject(generate.toArray(new Object[0]));
+        for(Object object: generate)
+            if(object instanceof KeyEventListener)
+                keyEventHandler.registerEvent((KeyEventListener) object);
         generate.clear();
     }
 
     public void removeObj(Object... gameObjects) {
-        objectManager.removeObject(gameObjects);
+        objectManager.addToCleanUp(gameObjects);
+        for(Object object: gameObjects) {
+            if(object instanceof KeyEventListener)
+                keyEventHandler.removeEvent((KeyEventListener) object);
+        }
     }
 
     public void updateSprites(long time) {
+        // object update
         for(Object object: objectManager.getObjectList())
             object.update(scene, time);
     }
