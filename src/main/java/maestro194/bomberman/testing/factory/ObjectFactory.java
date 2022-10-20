@@ -9,4 +9,5 @@ public interface ObjectFactory extends BaseFactory{
     Brick getBrick(int x, int y);
     Grass getGrass(int x, int y);
     Wall getWall(int x, int y);                     // wall
+    Balloom getBalloom(int x, int y);
 }

@@ -23,6 +23,8 @@ public class GameMapGenerator extends MapGenerator<MapEntity> {
                 return factory.getGrass(x, y);
             case "Wall":
                 return factory.getWall(x, y);
+            case "Balloom":
+                return factory.getBalloom(x, y);
             default:
                 return null;
         }

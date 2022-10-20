@@ -5,7 +5,8 @@ public enum MapEntity {
     BOMBER("Bomber"),
     BRICK("Brick"),
     GRASS("Grass"),
-    WALL("Wall");
+    WALL("Wall"),
+    BALLOOM("Balloom");
 
     private String name;
 

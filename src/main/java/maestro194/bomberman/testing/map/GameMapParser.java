@@ -13,6 +13,8 @@ public class GameMapParser extends MapParser<MapEntity> {
                 return MapEntity.BRICK;
             case ' ':
                 return MapEntity.GRASS;
+            case '1':
+                return MapEntity.BALLOOM;
             default:
                 return null;
         }

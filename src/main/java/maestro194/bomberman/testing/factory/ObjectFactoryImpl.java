@@ -41,4 +41,9 @@ public class ObjectFactoryImpl implements ObjectFactory{
     public Wall getWall(int x, int y) {
         return new Wall(x, y, Sprite.wall.getFxImage());
     }
+
+    @Override
+    public Balloom getBalloom(int x, int y) {
+        return new Balloom(x, y, Sprite.balloom_right1.getFxImage());
+    }
 }
