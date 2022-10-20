@@ -2,6 +2,7 @@ package maestro194.bomberman.testing.objects;
 
 import javafx.scene.canvas.GraphicsContext;
 import maestro194.bomberman.testing.GameEngine;
+import maestro194.bomberman.testing.sprites.Sprite;
 
 import java.util.*;
 

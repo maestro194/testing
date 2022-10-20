@@ -2,6 +2,7 @@ package maestro194.bomberman.testing.objects;
 
 import javafx.event.Event;
 import javafx.event.EventType;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
@@ -9,13 +10,13 @@ import javafx.scene.input.KeyEvent;
 import maestro194.bomberman.testing.Factory;
 import maestro194.bomberman.testing.util.KeyEventListener;
 
-import java.awt.*;
 import java.util.List;
 
 public class Bomb extends Object implements KeyEventListener {
     KeyCode currentlyPressed;
     private final long BOMB_TIMER = 2500;
     private int BOMB_LIMIT = 1;
+    private int BOMB_COUNT = 0;
     private long startTime;
     public Bomb(int x, int y, Image image) {
         super(x, y, image);
@@ -36,8 +37,11 @@ public class Bomb extends Object implements KeyEventListener {
         } else if(KeyEvent.KEY_PRESSED.equals(eventType)) {
             currentlyPressed = keyEvent.getCode();
             if(currentlyPressed == KeyCode.SPACE) {
-                Position newPosition = Bomber.getPosition();
-                // spawn bomb
+                if(BOMB_COUNT < BOMB_LIMIT) {
+                    Position bombPosition = Bomber.getPosition();
+                    BOMB_COUNT ++;
+                    // spawn bomb
+                }
             }
         }
     }
