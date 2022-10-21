@@ -16,9 +16,7 @@ public class ObjectFactoryImpl implements ObjectFactory{
 
     @Override
     public Bomb getBomb(int x, int y) {
-        Bomb bomb = new Bomb(x, y, Sprite.bomb.getFxImage());
-        keyEventHandler.registerEvent(bomb);
-        return bomb;
+        return new Bomb(x, y, Sprite.bomb.getFxImage());
     }
     @Override
     public Bomber getBomber(int x, int y) {

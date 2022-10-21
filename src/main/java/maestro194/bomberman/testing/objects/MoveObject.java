@@ -3,6 +3,7 @@ package maestro194.bomberman.testing.objects;
 import javafx.animation.Animation;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import maestro194.bomberman.testing.sprites.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +11,13 @@ import java.util.List;
 public class MoveObject extends Object{
     protected Position last;
     protected Direction direction;
-    protected int speed;
+    protected int speed = 0;
     protected boolean isDead = false;
 
     public MoveObject(int x, int y, Image image) {
         super(x, y, image);
-        this.last = new Position(x, y);
-        this.position = new Position(x, y);
+        this.last = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
+        position = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
         this.direction = Direction.R;
     }
 
@@ -49,6 +50,6 @@ public class MoveObject extends Object{
         if(isDead)
             return;
         this.last = new Position(position.getX(), position.getY());
-        this.position = move(position, direction);
+        position = move(position, direction);
     }
 }

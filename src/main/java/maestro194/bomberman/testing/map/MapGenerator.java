@@ -1,6 +1,8 @@
 package maestro194.bomberman.testing.map;
 
+import maestro194.bomberman.testing.objects.*;
 import maestro194.bomberman.testing.objects.Object;
+import maestro194.bomberman.testing.sprites.Sprite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +16,10 @@ public abstract class MapGenerator<Entity> implements IMapGenerator<Entity>{
             List<Entity> li = mapEntity.get(i);
             for(int j = 0; j < li.size(); j ++) {
                 Object generateEntity = generateEntity(j, i, li.get(j));
-                if(generateEntity != null)
+                if(generateEntity != null) {
+                    gameObjects.add(new Grass(j, i, Sprite.grass.getFxImage()));
                     gameObjects.add(generateEntity);
+                }
             }
         }
         return gameObjects;

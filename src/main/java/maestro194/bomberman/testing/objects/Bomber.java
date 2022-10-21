@@ -46,11 +46,8 @@ public class Bomber extends MoveObject implements KeyEventListener {
     public void update(Scene scene, long time) {
         super.update(scene, time);
 
-        // if(change position)
-        // do animation
-
-        System.out.println("speed: " + this.speed);
-        System.out.println("xPos: " + this.position.getX() + ", yPos: " + this.position.getY());
+//        System.out.println("speed: " + this.speed);
+//        System.out.println("xPos: " + this.position.getX() + ", yPos: " + this.position.getY());
     }
 
     private Direction getDirection(KeyEvent keyEvent) {
@@ -66,7 +63,7 @@ public class Bomber extends MoveObject implements KeyEventListener {
         }
     }
 
-    public static Position getPosition() {
-        return position;
+    public Position getPosition() {
+        return super.position;
     }
 }

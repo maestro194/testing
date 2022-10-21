@@ -10,7 +10,7 @@ public enum MapEntity {
 
     private String name;
 
-    private MapEntity(String name) {
+    MapEntity(String name) {
         this.name = name;
     }
 

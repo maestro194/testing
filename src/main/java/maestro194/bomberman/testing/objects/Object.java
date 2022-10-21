@@ -13,7 +13,7 @@ import java.util.List;
 public abstract class Object {
     protected List<Animation> animationList = new ArrayList<>();
     public Image image;
-    public static Position position;
+    public Position position;
     public static final double width = 16;
     public static final double height = 16;
 
@@ -31,7 +31,7 @@ public abstract class Object {
         return object.getBoundary().intersects(this.getBoundary());
     }
 
-    public static Position getPosition() {
+    public Position getPosition() {
         return position;
     }
 

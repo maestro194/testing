@@ -10,6 +10,6 @@ public class Balloom extends RandomMoveObject{
 
     @Override
     public void update(Scene scene, long time) {
-
+        super.update(scene, time);
     }
 }

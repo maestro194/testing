@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import maestro194.bomberman.testing.sprites.Sprite;
 
 public class RandomMoveObject extends Object {
     protected Position last;
@@ -13,8 +14,8 @@ public class RandomMoveObject extends Object {
 
     public RandomMoveObject(int x, int y, Image image) {
         super(x, y, image);
-        this.last = new Position(x, y);
-        this.position = new Position(x, y);
+        this.last = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
+        position = new Position(x * Sprite.SCALED_SIZE, y * Sprite.SCALED_SIZE);
         this.direction = Direction.R;
         this.isDead = false;
     }
@@ -56,6 +57,8 @@ public class RandomMoveObject extends Object {
             return;
         changeDirection();
         this.last = new Position(position.getX(), position.getY());
-        this.position = move(position, direction);
+        position = move(position, direction);
+
+        System.out.println("pos: " + position.getX() + "," + position.getY());
     }
 }
