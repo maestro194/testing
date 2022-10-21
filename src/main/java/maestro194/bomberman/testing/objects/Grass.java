@@ -2,6 +2,8 @@ package maestro194.bomberman.testing.objects;
 
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import maestro194.bomberman.testing.GameEngine;
+import maestro194.bomberman.testing.factory.ObjectFactory;
 
 public class Grass extends Object {
 
@@ -11,6 +13,11 @@ public class Grass extends Object {
 
     @Override
     public void update(Scene scene, long time) {
+
+    }
+
+    @Override
+    public <T extends ObjectFactory> void collide(GameEngine<T, ?> gameEngine, Object object) {
 
     }
 }

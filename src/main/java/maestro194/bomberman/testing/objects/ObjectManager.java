@@ -32,7 +32,7 @@ public class ObjectManager {
             if(object instanceof Wall || object instanceof Brick || object instanceof Grass)
                 object.render(graphicsContext);
         for(Object object: objectList)
-            if(object instanceof MoveObject)
+            if(object instanceof MoveObject || object instanceof RandomMoveObject)
                 object.render(graphicsContext);
     }
 

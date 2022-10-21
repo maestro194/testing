@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.map.IMapGenerator;
 import maestro194.bomberman.testing.map.IMapParser;
+import maestro194.bomberman.testing.objects.Grass;
 import maestro194.bomberman.testing.objects.MoveObject;
 import maestro194.bomberman.testing.objects.Object;
 import maestro194.bomberman.testing.objects.ObjectManager;
@@ -97,7 +98,23 @@ public abstract class GameEngine<OF extends ObjectFactory, Entity> {
     }
 
     public void checkCollision() {
+        for(Object object1 : objectManager.getObjectList()) {
+            for(Object object2 : objectManager.getObjectList()) {
+                if(object1 instanceof Grass || object2 instanceof Grass)
+                    continue;
+                if(handleCollision(object1, object2))
+                    break;
+            }
+        }
+    }
 
+    public boolean handleCollision(Object object1, Object object2) {
+        if(object1.isColliding(object2)) {
+            object1.collide(this, object2);
+            object2.collide(this, object1);
+            return true;
+        }
+        return false;
     }
 
     public void cleanSprites() {

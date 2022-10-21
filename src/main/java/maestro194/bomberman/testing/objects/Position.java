@@ -1,5 +1,8 @@
 package maestro194.bomberman.testing.objects;
 
+import maestro194.bomberman.testing.GameEngine;
+import maestro194.bomberman.testing.sprites.Sprite;
+
 public class Position {
     private int x;
     private int y;

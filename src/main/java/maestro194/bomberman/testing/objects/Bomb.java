@@ -3,6 +3,8 @@ package maestro194.bomberman.testing.objects;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import maestro194.bomberman.testing.GameEngine;
+import maestro194.bomberman.testing.factory.ObjectFactory;
 
 import java.util.List;
 
@@ -21,5 +23,10 @@ public class Bomb extends Object {
         if(time - startTime > BOMB_TIMER) {
             // explode
         }
+    }
+
+    @Override
+    public <T extends ObjectFactory> void collide(GameEngine<T, ?> gameEngine, Object object) {
+
     }
 }

@@ -8,7 +8,7 @@ import maestro194.bomberman.testing.sprites.Sprite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MoveObject extends Object{
+public abstract class MoveObject extends Object{
     protected Position last;
     protected Direction direction;
     protected int speed = 0;
@@ -52,4 +52,7 @@ public class MoveObject extends Object{
         this.last = new Position(position.getX(), position.getY());
         position = move(position, direction);
     }
+
+    // collision
+
 }

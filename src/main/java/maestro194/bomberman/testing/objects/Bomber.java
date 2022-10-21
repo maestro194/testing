@@ -2,12 +2,12 @@ package maestro194.bomberman.testing.objects;
 
 import javafx.event.Event;
 import javafx.event.EventType;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import maestro194.bomberman.testing.util.KeyEventHandler;
+import maestro194.bomberman.testing.GameEngine;
+import maestro194.bomberman.testing.factory.ObjectFactory;
 import maestro194.bomberman.testing.util.KeyEventListener;
 
 import java.util.Arrays;
@@ -25,7 +25,7 @@ public class Bomber extends MoveObject implements KeyEventListener {
 
     @Override
     public List<KeyCode> interestedIn() {
-        return Arrays.asList(A, D, W, S);
+        return Arrays.asList(A, D, W, S, SPACE);
     }
 
     @Override
@@ -37,8 +37,13 @@ public class Bomber extends MoveObject implements KeyEventListener {
             }
         } else if(KeyEvent.KEY_PRESSED.equals(eventType)) {
             currentlyPressed = keyEvent.getCode();
-            this.direction = getDirection(keyEvent);
-            this.speed = 1;
+            if(currentlyPressed == SPACE) {
+                // spawn bomb
+            } else {
+                this.direction = getDirection(keyEvent);
+                this.speed = 1;
+            }
+
         }
     }
 
@@ -66,4 +71,41 @@ public class Bomber extends MoveObject implements KeyEventListener {
     public Position getPosition() {
         return super.position;
     }
+
+    // Collision
+    @Override
+    public <T extends ObjectFactory> void collide(GameEngine<T, ?> gameEngine, Object object) {
+        if(object instanceof RandomMoveObject)
+            collide(gameEngine, (RandomMoveObject) object);
+        else if(object instanceof Wall)
+            collide(gameEngine, (Wall) object);
+        else if(object instanceof Brick)
+            collide(gameEngine, (Brick) object);
+    }
+
+    protected <T extends ObjectFactory> void collide(GameEngine<T, ?>  gameEngine, RandomMoveObject object) {
+        if (!isDead) {
+            speed = 0;
+            isDead = true;
+            System.out.println("You are dead");
+            while (true) {
+                // end screen
+            }
+        }
+    }
+
+    protected <T extends ObjectFactory> void collide(GameEngine<T, ?> gameEngine, Wall wall) {
+        if(last != null)
+            position = last;
+        last = null;
+        moveToPos(position);
+    }
+
+    protected <T extends ObjectFactory> void collide(GameEngine<T, ?> gameEngine, Brick brick) {
+        if(last != null)
+            position = last;
+        last = null;
+        moveToPos(position);
+    }
+
 }
